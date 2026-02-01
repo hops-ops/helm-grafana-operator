@@ -1,0 +1,15 @@
+apiVersion: helm.hops.ops.com.ai/v1alpha1
+kind: GrafanaOperator
+metadata:
+  name: grafana-operator
+  namespace: example-env
+spec:
+  clusterName: example-cluster
+  labels:
+    team: platform
+  namespace: grafana-operator
+  values:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi

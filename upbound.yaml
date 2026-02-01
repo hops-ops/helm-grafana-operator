@@ -1,0 +1,23 @@
+apiVersion: meta.dev.upbound.io/v2alpha1
+kind: Project
+metadata:
+  name: helm-grafana-operator
+spec:
+  dependsOn:
+  - apiVersion: pkg.crossplane.io/v1
+    kind: Provider
+    package: xpkg.crossplane.io/crossplane-contrib/provider-helm
+    version: '>=v1.0.6'
+  - apiVersion: pkg.crossplane.io/v1
+    kind: Function
+    package: xpkg.crossplane.io/crossplane-contrib/function-auto-ready
+    version: '>=v0.6.0'
+  description: Installs the Grafana Operator Helm chart with a minimal, stable interface.
+  license: Apache-2.0
+  maintainer: Patrick Lee Scott <pat@patscott.io>
+  readme: |
+    # helm-grafana-operator
+
+    Installs the Grafana Operator Helm chart using Crossplane and the Helm provider.
+  repository: ghcr.io/hops-ops/helm-grafana-operator
+  source: github.com/hops-ops/helm-grafana-operator

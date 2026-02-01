@@ -1,0 +1,38 @@
+# code: language=yaml
+#
+# Helm release for grafana-operator
+#
+
+{{- $go := $state.grafanaOperator }}
+
+---
+apiVersion: helm.m.crossplane.io/v1beta1
+kind: Release
+metadata:
+  name: {{ $go.releaseName }}
+  annotations:
+    {{ setResourceNameAnnotation "helm-release-grafana-operator" }}
+  labels: {{ $go.labels | toJson }}
+spec:
+  managementPolicies: {{ $go.managementPolicies | toJson }}
+  forProvider:
+    chart:
+      name: grafana-operator
+      repository: oci://ghcr.io/grafana/helm-charts
+      version: 5.21.4
+    namespace: {{ $go.namespace }}
+    {{- if $go.overrideAllValues }}
+    values:
+      {{- toYaml $go.overrideAllValues | nindent 6 }}
+    {{- else }}
+    values:
+      fullnameOverride: grafana-operator
+      nameOverride: grafana-operator
+      {{- if $go.values }}
+      {{- toYaml $go.values | nindent 6 }}
+      {{- end }}
+    {{- end }}
+  rollbackLimit: 3
+  providerConfigRef:
+    name: {{ $go.providerConfigRef.name }}
+    kind: {{ $go.providerConfigRef.kind }}
