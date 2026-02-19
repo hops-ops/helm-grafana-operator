@@ -24,13 +24,9 @@ spec:
     {{- if $go.overrideAllValues }}
     values:
       {{- toYaml $go.overrideAllValues | nindent 6 }}
-    {{- else }}
+    {{- else if $go.values }}
     values:
-      fullnameOverride: grafana-operator
-      nameOverride: grafana-operator
-      {{- if $go.values }}
       {{- toYaml $go.values | nindent 6 }}
-      {{- end }}
     {{- end }}
   rollbackLimit: 3
   providerConfigRef:

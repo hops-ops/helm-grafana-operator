@@ -1,5 +1,0 @@
-apiVersion: v2
-name: helm-grafana-operator
-version: 0.0.0
-description: GitOps packaging for the grafana-operator Crossplane configuration
-appVersion: 5.21.4
