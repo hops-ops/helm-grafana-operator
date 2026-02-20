@@ -57,11 +57,11 @@ spec:
                 description: Helm release name. Defaults to the XR metadata.name.
                 type: string
               values:
-                description: Helm values merged with defaults (fullnameOverride, nameOverride).
+                description: Helm values passed directly to the chart.
                 type: object
                 x-kubernetes-preserve-unknown-fields: true
               overrideAllValues:
-                description: Helm values that replace all defaults.
+                description: Helm values passed directly to the chart. Use when a parent composition needs to bypass its own defaults.
                 type: object
                 x-kubernetes-preserve-unknown-fields: true
           status:
